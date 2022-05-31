@@ -1,4 +1,5 @@
-point= {1: 0.8415, 2: 0.9093, 3: 0.1411}
+point= {1:1, 2: 0, 4: 1.5}
+keys = list(point.keys())
 All_Elementary_matrix= {}
 
 def liniar(p1,p2, x,point):
@@ -25,6 +26,21 @@ def polinomit(point,x):
     for k in range(len(result)):
         f += result[k][0]*pow(x,k)
     print("f(x) = ", f)
+
+def lagrange(point, x):
+    L_I = 1
+    sum = 0
+    for i in range(len(point)):
+        for j in range(len(point)):
+            if i != j:
+                L_I *= ((x-keys[j]))/(keys[i]-keys[j])
+        sum += L_I * point[keys[i]]
+        L_I = 1
+    return sum
+
+
+def nevil():
+
 
 
 
@@ -218,7 +234,7 @@ D = create_I_matrix(len(MAT))
 for i in range(len(MAT)):
     D[i][i] = MAT[i][i]
 
-print(elementary_matrix(D, [[2], [4], [9]]))
+print(lagrange(point,3))
 
 
 
@@ -226,4 +242,4 @@ print(elementary_matrix(D, [[2], [4], [9]]))
 
 
 
-polinomit(point,2.5)
+
